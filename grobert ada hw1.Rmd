@@ -117,3 +117,29 @@ a[2, 3, 2, ]
 #[4,]  294  284  274  264  254
 #[5,]  292  282  272  262  252
 a[1:5, 1:5, 3, 3]
+
+#CHALLENGE 4
+#list of simplified primate taxonomy, superfamily and above named with taxonomic level and name, families just named
+Cercopithecoidea_superfamily<-c("Cercopithecidae")
+Hominoidea_superfamily<-c("Hylobatidae", "Hominidae")
+Ceboidea_superfamily<-c("Cebidae", "Atelidae", "Pitheciidae")
+Tarsioidea_superfamily<-c("Tarsiidae")
+Lemuroidea_superfamily<-c("Cheirogaleidae", "Lepilemuridae", "Indriidae", "Lemuridae", "Daubentoniidae")
+Lorisoidea_superfamily<-c("Lorisidae", "Galagidae")
+Catarrhini_parvorder<-list(Hominoidea_superfamily, Cercopithecoidea_superfamily)
+Platyrrhini_parvorder<-list(Ceboidea_superfamily)
+Simiiformes_infraorder<-list(Platyrrhini_parvorder, Catarrhini_parvorder)
+Tarsiiformes_infraorder<-list(Tarsioidea_superfamily)
+Lemuriformes_infraorder<-list(Lemuroidea_superfamily)
+Lorisiformes_infraorder<-list(Lorisoidea_superfamily)
+Haplorhini_suborder<-list(Tarsiiformes_infraorder, Simiiformes_infraorder)
+Strepsirhini_suborder<-list(Lorisiformes_infraorder, Lemuriformes_infraorder)
+Primate_order<-list(Strepsirhini_suborder, Haplorhini_suborder)
+#using double bracket notation to extract new world monkeys
+nwm<-Primate_order[[2]][[2]][[1]]
+#class and mode are both list
+class(nwm)
+mode(nwm)
+#using $ to extract tarisers
+tarisers<-Primate_order$Haplorhini_suborder$Tarsiiformes_infraorder$Tarsioidea_superfamily$""Tarsiidae"
+
