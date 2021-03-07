@@ -30,6 +30,44 @@ plot(pressure)
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
 library(curl)
+library(stringr)
+library(tidyverse)
+
+
+#reading in data
 f <- curl("https://raw.githubusercontent.com/difiore/ada-2021-datasets/master/darwin.txt")
-d <- read.table(f, header = FALSE, sep = "\t", stringsAsFactors = FALSE)
-tail(d)
+#specifying \n to delimit by paragraph
+d <- read.delim(f, header = FALSE, sep = "\n")
+#number of obs will be number of paragraphs
+str(d)
+#this suggest 57 paragraphs, however, browsing the data to see if the chapter title is counted as a paragraph
+View(d)
+#the title is counted as a paragraph, so to print the 34th paragraph, we will print the 35th entry
+the_fact<-d[35,]
+#removing punctuation
+the_fact<-gsub("[[:punct:]]","",the_fact)
+#splitting the string into a vector of substrings
+split<-str_split(the_fact, " ")
+#converting to a data frame bc the result of the above is a list of 1
+split<-data.frame(words=unlist(split))
+#frequency table 
+freq<-sort(table(split))
+View(freq)
+#shows 122 unique words, the most common word is "of", with 14 occurences, 91 words appear 1 time, and 6 words appear 5 or more times.
+
+#extract the last paragraph
+interesting<-d[57,]
+#removing punctuation
+interesting<-gsub("[[:punct:]]","",interesting)
+#splitting the string into a vector of substrings
+split_quote<-str_split(interesting, " ")
+#converting to a data frame bc the result of the above is a list of 1
+split_quote<-data.frame(words=unlist(split_quote))
+#extracting every third element
+every_third<-split_quote$words[seq(1,222, 3)]
+#printing every third element
+every_third
+#sorting every third element into reverse aplhabetical order
+reversed_thirds<-sort(every_third, decreasing=TRUE)
+#... and printing every third element sorted into reverse aplhabetical order
+reversed_thirds
