@@ -33,6 +33,7 @@ library(curl)
 library(stringr)
 library(tidyverse)
 
+#CHALLENGE 1
 
 #reading in data
 f <- curl("https://raw.githubusercontent.com/difiore/ada-2021-datasets/master/darwin.txt")
@@ -71,3 +72,48 @@ every_third
 reversed_thirds<-sort(every_third, decreasing=TRUE)
 #... and printing every third element sorted into reverse aplhabetical order
 reversed_thirds
+
+#CHALLENGE 2
+#putting all the cities and their jan high temps into a single vector
+t<-c("Beijing", "Lagos", "Paris", "Rio de Janiero", "San Juan", "Toronto", 35, 88, 42, 84, 81, 30)
+#creating a vector with city names
+city<-t[1:6]
+#using names() and previously defined objects to assocaite corresponding data
+names(t)[1:6]<- "city"
+names(t)[7:12]<- "jan_high_F"
+t<-matrix(data=t, nrow=6, ncol=2, byrow=FALSE)
+#accessing temps of first 3 cities
+t[1:3,2]
+#accessing temp of paris
+t[3,2]
+#accessing temp of san juan
+t[5,2]
+
+#CHALLENGE 3
+#creating 8 row 20 col matrix, descending 159 to 1 col wise
+m1<-matrix(data = 159:1, nrow = 8, ncol = 20, byrow = FALSE)
+#extracting the value of the element in row 5, col2
+m1[5,2]
+#extracting contents of rows 5 to 7
+m1[5:7,]
+#extracting row3 col4 to row6 col9, named m2
+m2<-m1[3:6,4:9]
+#class of m2 is matrix, array
+class(m2)
+#mode of m2 is numeric
+mode(m2)
+
+#cHALLENGE 3... AGAIN!
+#a 4 dim, 400 element array, even integers descending from 800 to 2
+a<-array(data=seq( from = 800, to = 2, by = -2), dim=c(5,5,4,4))
+# a[1, 1, 1, 2] returns 600
+a[1, 1, 1, 2] 
+#a[2, 3, 2, ] returns <[1] 728 528 328 128>
+a[2, 3, 2, ]
+#a[1:5, 1:5, 3, 3] returns      
+#[1,]  300  290  280  270  260
+#[2,]  298  288  278  268  258
+#[3,]  296  286  276  266  256
+#[4,]  294  284  274  264  254
+#[5,]  292  282  272  262  252
+a[1:5, 1:5, 3, 3]
