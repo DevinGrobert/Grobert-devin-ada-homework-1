@@ -32,7 +32,8 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent pr
 library(curl)
 library(stringr)
 library(tidyverse)
-
+library(knitr)
+?knitr
 #CHALLENGE 1
 
 #reading in data
@@ -142,4 +143,9 @@ class(nwm)
 mode(nwm)
 #using $ to extract tarisers
 tarisers<-Primate_order$Haplorhini_suborder$Tarsiiformes_infraorder$Tarsioidea_superfamily$""Tarsiidae"
+
+#knitted to:
+https://rpubs.com/dgrobert/736876
+
+
 
